@@ -1,10 +1,6 @@
 #!/bin/bash
 
-FILE_ENV=.env
 
-if [-f "$FILE" ]; then
-rm -rf .env
-fi
 echo $1 | sudo -S docker-compose exec -T curso_api_cache cat << EOF > .env
 APP_NAME="Api Cache"
 APP_ENV=production
