@@ -31,6 +31,10 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
+    - name: Psalm Security Scan
+      uses: docker://ghcr.io/psalm/psalm-security-scan
+      with:
+        security_analysis: true
 
   laravel-deployment:
     name: CD
