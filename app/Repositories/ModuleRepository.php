@@ -18,7 +18,7 @@ class ModuleRepository
     {
 
         return Cache::remember('modules_course', 60, function () use($courseId) {
-            $this->entity
+           return $this->entity
                 ->where('course_id', $courseId)
                 ->get();
         });
