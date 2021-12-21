@@ -36,6 +36,11 @@ jobs:
       with:
         security_analysis: true
 
+    - name: Upload Security Analysis results to GitHub
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: results.sarif
+
   laravel-deployment:
     name: CD
     needs: laravel-tests
