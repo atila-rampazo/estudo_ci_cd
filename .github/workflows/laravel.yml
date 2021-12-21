@@ -68,7 +68,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          envs: USER_PASS DB_NAME DB_PASS DB_USER
+          envs: USER_PASS, DB_NAME, DB_PASS, DB_USER
           script: |
             script: |
             cd ci-cd/
