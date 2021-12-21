@@ -3,7 +3,7 @@
 FILE_ENV=.env
 
 if [ ! -f "$FILE" ]; then
-    php -r "file_exists('.env') || copy('.env.example', '.env');"
+    echo $1 | sudo -S docker-compose exec -T curso_api_cache php -r "file_exists('.env') || copy('.env.example', '.env');"
 fi
     echo $1 | sudo -S docker-compose exec -T curso_api_cache cat > .env <<EOF
     APP_NAME=$2
