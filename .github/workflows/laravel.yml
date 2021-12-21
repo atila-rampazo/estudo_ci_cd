@@ -73,7 +73,7 @@ jobs:
             script: |
             cd ci-cd/
             echo $USER_PASS | sudo -S docker-compose up -d
-            echo $USER_PASS | sudo -S ./config.sh "Aplicativo Teste" "http://paozinhoja.com.br" mysql $DB_NAME $DB_USER $DB_PASS
+            echo $USER_PASS | sudo -S ./config.sh $USER_PASS "Aplicativo Teste" "http://paozinhoja.com.br" mysql $DB_NAME $DB_USER $DB_PASS
             echo $USER_PASS | sudo -S docker-compose exec -T curso_api_cache composer install
             echo $USER_PASS | sudo -S docker-compose exec -T curso_api_cache php artisan migrate --force
 
