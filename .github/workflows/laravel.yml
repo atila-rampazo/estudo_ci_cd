@@ -74,8 +74,9 @@ jobs:
           envs: USER_PASS, DB_NAME, DB_PASS, DB_USER
           script: |
             cd ci-cd/
-            echo $USER_PASS | sudo -S docker-compose up -d
             echo $USER_PASS | sudo -S ./config.sh $USER_PASS "Aplicativo Teste" "http://paozinhoja.com.br" mysql $DB_NAME $DB_USER $DB_PASS
+            echo $USER_PASS | sudo -S docker-compose up -d
+
             echo  $USER_PASS "Aplicativo Teste" "http://paozinhoja.com.br" mysql $DB_NAME $DB_USER $DB_PASS
 
 
