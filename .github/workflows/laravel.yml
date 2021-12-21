@@ -68,13 +68,14 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          envs: USER_PASS
+          envs: USER_PASS DB_NAME DB_PASS DB_USER
           script: |
             script: |
             cd ci-cd/
             echo $USER_PASS | sudo -S docker-compose up -d
-            echo $USER_PASS | sudo -S docker-compose exec -T curso_api_cache php -r "file_exists('.env') || copy('.env.example', '.env');"
+            echo $USER_PASS | sudo ./config.sh "Aplicativo Teste" "http://paozinhoja.com.br" mysql $DB_NAME $DB_USER $DB_PASS
             echo $USER_PASS | sudo -S docker-compose exec -T curso_api_cache composer install
+            echo $USER_PASS | sudo -S docker-compose exec -T curso_api_cache php artisan migrate --force
 
 
 
