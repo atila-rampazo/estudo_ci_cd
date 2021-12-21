@@ -35,12 +35,18 @@ jobs:
       uses: docker://ghcr.io/psalm/psalm-security-scan
       with:
         security_analysis: true
-
+        report_file: results.sarif
+    - name: Upload Security Analysis results to GitHub
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: results.sarif
 
   laravel-deployment:
     name: CD
     needs: laravel-tests
     runs-on: ubuntu-latest
+    env:
+      USER_PASS:  "${{ secrets.USER_PASS }}"
     steps:
       - name: Executando comandos SSH 🚀
         uses: appleboy/ssh-action@master
@@ -49,7 +55,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          envs: USER_PASS
           script: |
-            ls -la
+            echo $USER_PASS | sudo -S docker ps
 
 
