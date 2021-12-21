@@ -47,6 +47,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       USER_PASS:  "${{ secrets.USER_PASS }}"
+      DB_NAME:  "${{ secrets.DB_NAME }}"
+      DB_PASS:  "${{ secrets.DB_PASS }}"
+      DB_USER:  "${{ secrets.DB_USER }}"
     steps:
       - uses: actions/checkout@v2
         with:
