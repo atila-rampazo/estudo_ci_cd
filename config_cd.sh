@@ -6,21 +6,21 @@ if [ ! -f "$FILE" ]; then
     echo $1 | sudo -S docker-compose exec -T curso_api_cache php -r "file_exists('.env') || copy('.env.example', '.env');"
 fi
     echo $1 | sudo -S docker-compose exec -T curso_api_cache cat > .env <<EOF
-    APP_NAME=$2
+    APP_NAME="Api Cache"
 APP_ENV=production
 APP_KEY=
 APP_DEBUG=false
-APP_URL=$3
+APP_URL="https://minharendapassiva.com.br"
 
 LOG_CHANNEL=stack
 LOG_LEVEL=debug
 
 DB_CONNECTION=mysql
-DB_HOST=$4
+DB_HOST=$2
 DB_PORT=3306
-DB_DATABASE=$5
-DB_USERNAME=$6
-DB_PASSWORD=$7
+DB_DATABASE=$3
+DB_USERNAME=$4
+DB_PASSWORD=$5
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=redis
