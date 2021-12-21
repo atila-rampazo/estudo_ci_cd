@@ -57,7 +57,6 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "-rltgoDzvO --exclude .git --exclude .docker --exclude .github"
-          SOURCE: "dist/"
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           TARGET: /home/${{ secrets.SSH_USER }}/ci-cd
