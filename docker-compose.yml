@@ -2,9 +2,9 @@ version: "3.7"
 services:
     # image project
     curso_api_cache:
-        build: 
-            args: 
-                user: carlos
+        build:
+            args:
+                user: zensolutions
                 uid: 1000
             context: ./
             dockerfile: Dockerfile
@@ -13,48 +13,48 @@ services:
         working_dir: /var/www/
         volumes:
             - ./:/var/www
-        depends_on: 
+        depends_on:
             - redis
             - queue
-        networks: 
+        networks:
             - cursoapicache
-    
+
     # nginx
     nginx:
         image: nginx:alpine
         restart: unless-stopped
-        ports: 
+        ports:
             - 80:80
             - 443:443
-        volumes: 
+        volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
-        networks: 
+        networks:
             - cursoapicache
 
     # queue
     queue:
-        build: 
-            args: 
-                user: carlos
+        build:
+            args:
+                user: zensolutions
                 uid: 1000
             context: ./
             dockerfile: Dockerfile
         restart: unless-stopped
         command: "php artisan queue:work"
-        volumes: 
+        volumes:
             - ./:/var/www
-        depends_on: 
+        depends_on:
             - redis
-        networks: 
+        networks:
             - cursoapicache
 
     # redis
     redis:
         image: redis:latest
-        networks: 
+        networks:
             - cursoapicache
 
-networks: 
+networks:
     cursoapicache:
         driver: bridge
