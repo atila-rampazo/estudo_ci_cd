@@ -16,9 +16,12 @@ class ModuleRepository
 
     public function getModuleCourse(int $courseId)
     {
-        return $this->entity
-                        ->where('course_id', $courseId)
-                        ->get();
+
+        return Cache::remember('modules_course', 60, function () use($courseId) {
+            $this->entity
+                ->where('course_id', $courseId)
+                ->get();
+        });
     }
 
     public function createNewModule(int $courseId, array $data)
@@ -50,7 +53,7 @@ class ModuleRepository
         Cache::forget('courses');
 
         $data['course_id'] = $courseId;
-        
+
 
         return $module->update($data);
     }

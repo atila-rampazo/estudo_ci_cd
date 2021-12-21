@@ -16,9 +16,12 @@ class LessonRepository
 
     public function getLessonsModule(int $moduleId)
     {
-        return $this->entity
-                        ->where('module_id', $moduleId)
-                        ->get();
+        return Cache::remember('lessons', 60, function () use($moduleId) {
+            return $this->entity
+            ->where('module_id', $moduleId)
+            ->get();
+        });
+
     }
 
     public function createNewLesson(int $moduleId, array $data)
