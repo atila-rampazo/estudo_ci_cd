@@ -75,7 +75,7 @@ jobs:
             echo $USER_PASS | sudo -S docker-compose up -d
             echo $USER_PASS | sudo -S docker-compose exec -T curso_api_cache php -r "file_exists('.env') || copy('.env.example', '.env');"
             echo $USER_PASS | sudo -S docker-compose exec -T curso_api_cache composer install
-            echo $USER_PASS | sudo -S docker-compose exec -T curso_api_cache  [ -f .env ] &&  php artisan migrate --force || copy('.env.example', '.env'); && php artisan migrate --force
+
 
 
 
