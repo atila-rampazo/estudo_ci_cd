@@ -70,9 +70,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           envs: USER_PASS, DB_NAME, DB_PASS, DB_USER
           script: |
-            script: |
             cd ci-cd/
-            ls -ltra
+            echo $USER_PASS | sudo -S docker-compose up -d
 
 
 
